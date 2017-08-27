@@ -60,6 +60,7 @@ void insert(char page[],char user[]) {
 		
 		}
 		else{
+				hashArray[hashIndex]->user[hashArray[hashIndex]->index] = malloc(strlen(hashArray[hashIndex]->user[hashArray[hashIndex]->index -1])+1);
 				strncpy(hashArray[hashIndex]->user[hashArray[hashIndex]->index],user,strlen(user));
 				hashArray[hashIndex]->index = hashArray[hashIndex]->index+1;
 
@@ -105,6 +106,7 @@ struct pair * getAffinityPair() {
 */
 
 void printData(){
+
 	for(int i = 0;i<SIZE;i++) {
 		printf("%s\n",hashArray[i]->page);
 		for(int j = 0; j < hashArray[i]->index ; j++) 
@@ -112,8 +114,9 @@ void printData(){
 	}
 }
 
+
 void initialize() {
-	for(int i = 0; i < SIZE ;i++)
+	for(int i = 0; i < SIZE;i++)
 		hashArray[i] = NULL;
 }
 
