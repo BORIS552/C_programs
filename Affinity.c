@@ -4,19 +4,19 @@
 
 #define SIZE 10
 
-typedef struct affinity {
+ struct affinity {
 	char page[10];
 	int index;
 	char *user[10];
 };
 
-typedef struct pair {
+ struct pair {
 	char first[10];
 	char second[10];
 };
 
-affinity *hashArray[SIZE];
-affinity *item;
+struct affinity *hashArray[SIZE];
+struct affinity *item;
 
 
 //hashfunction.
@@ -51,11 +51,11 @@ void insert(char page[],char user[]) {
 	
 	if(hashArray[hashIndex] == NULL)
 		{
-			item = (affinity*)malloc(sizeof(affinity));
+			item = (struct affinity*)malloc(sizeof(struct affinity));
 			strncpy(item->page,page,strlen(page));
 			hashArray[hashIndex] = item;
 			hashArray[hashIndex]->index = 0;
-			strncpy(hashArray[hashIndex]->user[index],user,strlen(user));
+			strncpy(hashArray[hashIndex]->user[hashArray[hashIndex]->index],user,strlen(user));
 			hashArray[hashIndex]->index = hashArray[hashIndex]->index+1;
 		
 		}
@@ -92,7 +92,7 @@ void splitWords(char str[]) {
 }
 
 /*
-pair * getAffinityPair() {
+struct pair * getAffinityPair() {
 	pair *node = NULL;
 	char setA[50],setB[50],setC[50];
 	for(int i = 0; i < SIZE; i++) {
@@ -103,6 +103,7 @@ pair * getAffinityPair() {
 	return node;
 }
 */
+
 void printData(){
 	for(int i = 0;i<SIZE;i++) {
 		printf("%s\n",hashArray[i]->page);
