@@ -21,27 +21,30 @@ void initialize() {
 //hashfunction.
 /*
 * multiplying each ascii value of character in word by a prime number.
-* here int this case prime number is 3.
+* here int this case prime number is 31.
+* (USED BY JAVA):http://docs.oracle.com/javase/6/docs/api/java/lang/String.html#hashCode%28%29
+* More likely to produce 
+* unique numbers. 
 * using pow() for making the value unique so that "stop" and "pots"
 * do not return the same value.
 */
-int hashCodeIndex(char str[]) {
 
-	int index = 0;
+long long  hashCodeIndex(char str[]) {
+
+	long long index = 0LL;
 	int prime = 3;
 	int len = strlen(str);
-	//printf("%s :hashcode\n",str );
 	for(int i = 0; i <len; i++){
-		index = index + ((int)str[i]*pow(3,i)) ;
+		index = index + ((int)str[i]*pow(31,len-i)) ;
 	}
-	//printf("%d:index\n",index );
 	return index;
 }
+
 
 void insert(char key[]) {
 
 	//item->count = count;
-	int hashIndex = hashCodeIndex(key);
+	long long hashIndex = hashCodeIndex(key);
 	//printf("%d\n",hashIndex );
 	//checkIndex(hashIndex);
 
